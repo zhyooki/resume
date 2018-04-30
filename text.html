@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+
+<HEAD>
+    <TITLE> frame </TITLE>
+    <script src="./js/jQuery.js"></script>
+    <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("input").bind("click", function() {
+                $(this).unbind("click");
+                begin();
+            });
+        });
+
+        function begin() {
+            var i = 10;
+            var j = 20;
+            var s = setInterval(function() {
+                $("#div").html("" + (i--));
+                if (i == 0) {
+                    clearInterval(s);
+                    var s1 = setInterval(function() {
+                        $("#div").html("" + (j--));
+                        if (j == 0) {
+                            clearInterval(s1);
+                            begin();
+                        }
+                    }, 2000);
+                }
+            }, 1000);
+        }
+    </script>
+</HEAD>
+
+<body>
+    <input type="button" value="start" />
+    <div id="div"></div>
+</body>
+
+</HTML>
